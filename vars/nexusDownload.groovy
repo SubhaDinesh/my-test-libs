@@ -5,7 +5,8 @@ ARTIFACT_ID="my-test"
 VERSION="1.1"
 USERNAME="admin"
 PASSWORD="Mitakshi21"
-METADATA=$(curl -s -u "${USERNAME}:${PASSWORD}" "${NEXUS_URL}/service/rest/v1/search/assets?repository=${REPOSITORY}&group=${GROUP_ID}&name=${ARTIFACT_ID}&version=${VERSION}")
+METADATA=$(curl -s -u "${USERNAME}:${PASSWORD}"
+"${NEXUS_URL}/service/rest/v1/search/assets?repository=${REPOSITORY}&group=${GROUP_ID}&name=${ARTIFACT_ID}&version=${VERSION}")
 echo $METADATA
 DOWNLOAD_URL=$(echo "${METADATA}" | jq -r '.items[0].downloadUrl')
 curl -u "${USERNAME}:${PASSWORD}" -O "${DOWNLOAD_URL}"
